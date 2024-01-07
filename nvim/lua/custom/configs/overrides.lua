@@ -1,7 +1,7 @@
 local M = {}
 
-local actions = require("telescope.actions")
-local action_layout = require("telescope.actions.layout")
+local actions = require "telescope.actions"
+local action_layout = require "telescope.actions.layout"
 
 M.treesitter = {
     ensure_installed = {
@@ -128,7 +128,6 @@ M.nvimtree = {
 
     view = {
         width = 30,
-        hide_root_folder = false,
         side = "left",
         float = {
             enable = false,

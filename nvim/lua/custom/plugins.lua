@@ -43,6 +43,7 @@ local plugins = {
 
     {
         "nvim-tree/nvim-tree.lua",
+        enabled = false,
         opts = overrides.nvimtree,
     },
 
@@ -251,7 +252,10 @@ local plugins = {
 
     -- Neovim motion on speed
     {
-        "phaazon/hop.nvim",
+        "smoka7/hop.nvim",
+        lazy = false,
+        version = "*",
+        opts = {},
         config = function()
             require("hop").setup()
         end,
@@ -511,7 +515,7 @@ local plugins = {
     -- Neovim LSP plugin
     {
         "glepnir/lspsaga.nvim",
-        lazy = false,
+        -- lazy = false,
         event = "LspAttach",
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
@@ -708,6 +712,39 @@ local plugins = {
     {
         "fladson/vim-kitty",
         ft = "kitty",
+    },
+
+    -- Neovim plugin to manage the file system
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        lazy = false,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+            "3rd/image.nvim",
+            {
+                "s1n7ax/nvim-window-picker",
+                config = function()
+                    require("window-picker").setup {
+                        filter_rules = {
+                            include_current_win = false,
+                            autoselect_one = true,
+                            -- filter using buffer options
+                            bo = {
+                                -- if the filetype is one of following, the window will be ignored
+                                filetype = { "neo-tree", "neo-tree-popup", "notify" },
+                                -- if the buffer type is one of following, the window will be ignored
+                                buftype = { "terminal", "quickfix" },
+                            },
+                        },
+                    }
+                end,
+            },
+        },
+        config = function()
+            require "custom.configs.neotree"
+        end,
     },
 }
 

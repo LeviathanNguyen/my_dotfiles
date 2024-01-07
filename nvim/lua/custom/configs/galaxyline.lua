@@ -301,7 +301,7 @@ section.mid = {
                 end
                 return true
             end,
-            icon = " LSP: ",
+            icon = "  LSP: ",
             highlight = { _HEX_COLORS.cyan, _HEX_COLORS.bar.middle, "bold" },
         },
     },

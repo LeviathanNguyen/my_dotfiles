@@ -4,6 +4,7 @@ local M = {}
 M.general = {
     n = {
         [";"] = { ":", "Enter Command Mode", opts = { nowait = true } },
+        ["<BS>"] = { ":noh<CR>", "Clear Search Highlights", opts = { silent = true } },
     },
 
     v = {

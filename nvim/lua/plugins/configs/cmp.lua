@@ -15,19 +15,19 @@ local formatting_style = {
     fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
     format = function(_, item)
-    local icons = require "nvchad.icons.lspkind"
-    local icon = (cmp_ui.icons and icons[item.kind]) or ""
+        local icons = require "nvchad.icons.lspkind"
+        local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
-    if cmp_style == "atom" or cmp_style == "atom_colored" then
-        icon = " " .. icon .. " "
-        item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-        item.kind = icon
-    else
-        icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
-        item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
-    end
+        if cmp_style == "atom" or cmp_style == "atom_colored" then
+            icon = " " .. icon .. " "
+            item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
+            item.kind = icon
+        else
+            icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
+            item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
+        end
 
-    return item
+        return item
     end,
 }
 
@@ -44,7 +44,7 @@ local function border(hl_name)
     }
 end
 
-local has_words_before = function ()
+local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
@@ -68,7 +68,7 @@ local options = {
     },
     snippet = {
         expand = function(args)
-        require("luasnip").lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
 
@@ -82,7 +82,7 @@ local options = {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping {
-            i = function (fallback)
+            i = function(fallback)
                 if cmp.visible() and cmp.get_active_entry() then
                     cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
                 else
@@ -109,8 +109,8 @@ local options = {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-                elseif require("luasnip").jumpable(-1) then
-                vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+            elseif require("luasnip").jumpable(-1) then
+                vim.fn.feedkeys("", vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true))
             else
                 fallback()
             end
@@ -131,7 +131,7 @@ local options = {
             name = "spell",
             option = {
                 keep_all_entries = false,
-                enable_in_context = function ()
+                enable_in_context = function()
                     return true
                 end,
             },

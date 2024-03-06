@@ -266,7 +266,7 @@ M.telescope = {
     extensions = {
         project = {
             base_dirs = {
-                { "D:\\Workspaces" },
+                { "~/Workspaces/" },
             },
             order_by = "asc",
             hidden_files = true,

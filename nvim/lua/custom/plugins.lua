@@ -669,6 +669,24 @@ local plugins = {
     {
         "fedepujol/move.nvim",
         lazy = false,
+        config = function()
+            require("move").setup {
+                line = {
+                    enable = true, -- Enables line movement
+                    indent = true, -- Toggle indentation
+                },
+                block = {
+                    enable = true, -- Enables block movement
+                    indent = true, -- Toggles indentation
+                },
+                word = {
+                    enable = false, -- Enables word movement
+                },
+                char = {
+                    enable = false, -- Enables char movement
+                },
+            }
+        end,
     },
 
     -- The yank/paste enhancement plugin for Neovim
@@ -745,6 +763,21 @@ local plugins = {
         config = function()
             require "custom.configs.neotree"
         end,
+    },
+
+    -- Bazel plugin for Neovim
+    {
+        "alexander-born/bazel.nvim",
+        ft = "bazel",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+    },
+
+    -- An alternative sudo.vim for Neovim
+    {
+        "lambdalisue/suda.vim",
+        lazy = false,
     },
 }
 
